@@ -17,10 +17,10 @@ table, td, th{
 }
 table {
     border-collapse: collapse;
-    width: 90%;
+    width: 100%;
 }
 td {
-  width: 33.33%;
+  width: 20%;
   position: relative;
 }
 td:after {
