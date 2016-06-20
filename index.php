@@ -11,18 +11,22 @@
 
 <!-- My Own CSS and JS -->
 <style>
-table, td, th {
-    border: 1px solid #ddd;
-    text-align: mid;
+table, td, th{
+  border: 1px solid #ddd;
+  text-align: mid;
 }
-
 table {
     border-collapse: collapse;
-    width: 100%;
+    width: 90%;
 }
-
-th, td {
-    padding: 15px;
+td {
+  width: 33.33%;
+  position: relative;
+}
+td:after {
+  content: '';
+  display: block;
+  margin-top: 100%;
 }
 td:hover{background-color:#f5f5f5}
 </style>
