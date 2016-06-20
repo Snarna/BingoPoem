@@ -6,53 +6,54 @@
   <title>Welcome to OpenShift</title>
 
 <link rel="stylesheet" type="text/css" href="libs\css\foundation.css">
-
+<style>
+table, th, td {
+    padding: 15px;
+    text-align: middle;
+}
+</style>
 
 </head>
 <body>
   <div class="row">
-    <table>
+    <table id="bingoCard">
 	<tr>
-		<th width="20%">B</th>
-		<th width="20%">I</th>
-		<th width="20%">N</th>
-		<th width="20%">G</th>
-		<th width="20%">O</th>
+		<th colspan="5">!Bingoem!</th>
 	</tr>
 	<tr>
-		<td id="square0">&nbsp;</td>
-		<td id="square1">&nbsp;</td>
-		<td id="square2">&nbsp;</td>
-		<td id="square3">&nbsp;</td>
-		<td id="square4">&nbsp;</td>
+		<td id="00">&nbsp;</td>
+		<td id="01">&nbsp;</td>
+		<td id="02">&nbsp;</td>
+		<td id="03">&nbsp;</td>
+		<td id="04">&nbsp;</td>
 	</tr>
 	<tr>
-		<td id="square5">&nbsp;</td>
-		<td id="square6">&nbsp;</td>
-		<td id="square7">&nbsp;</td>
-		<td id="square8">&nbsp;</td>
-		<td id="square9">&nbsp;</td>
+		<td id="10">&nbsp;</td>
+		<td id="11">&nbsp;</td>
+		<td id="12">&nbsp;</td>
+		<td id="13">&nbsp;</td>
+		<td id="14">&nbsp;</td>
 	</tr>
 	<tr>
-		<td id="square10">&nbsp;</td>
-		<td id="square11">&nbsp;</td>
+		<td id="20">&nbsp;</td>
+		<td id="21">&nbsp;</td>
 		<td id="free">Free</td>
-		<td id="square12">&nbsp;</td>
-		<td id="square13">&nbsp;</td>
+		<td id="23">&nbsp;</td>
+		<td id="24">&nbsp;</td>
 	</tr>
 	<tr>
-		<td id="square14">&nbsp;</td>
-		<td id="square15">&nbsp;</td>
-		<td id="square16">&nbsp;</td>
-		<td id="square17">&nbsp;</td>
-		<td id="square18">&nbsp;</td>
+		<td id="30">&nbsp;</td>
+		<td id="31">&nbsp;</td>
+		<td id="32">&nbsp;</td>
+		<td id="33">&nbsp;</td>
+		<td id="34">&nbsp;</td>
 	</tr>
 	<tr>
-		<td id="square19">&nbsp;</td>
-		<td id="square20">&nbsp;</td>
-		<td id="square21">&nbsp;</td>
-		<td id="square22">&nbsp;</td>
-		<td id="square23">&nbsp;</td>
+		<td id="40">&nbsp;</td>
+		<td id="41">&nbsp;</td>
+		<td id="42">&nbsp;</td>
+		<td id="43">&nbsp;</td>
+		<td id="44">&nbsp;</td>
 	</tr>
 </table>
   </div>
