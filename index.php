@@ -3,15 +3,38 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Welcome to OpenShift</title>
+  <title>HSS Final Project</title>
 
+<!-- Import CSS and JS -->
 <link rel="stylesheet" type="text/css" href="libs\css\foundation.css">
+<script src="libs\js\jquery-3.0.0.min.js"></script>
+
+<!-- My Own CSS and JS -->
 <style>
-table, th, td {
-    padding: 15px;
-    text-align: middle;
+table, td, th {
+    border: 1px solid #ddd;
+    text-align: mid;
 }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 15px;
+}
+td:hover{background-color:#f5f5f5}
 </style>
+
+<script>
+var numberPool = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+function randomizeCard(){
+  $("#bingoCard").find('td').html(myArray[Math.floor(Math.random() * myArray.length)]);
+  });
+}
+
+</script>
 
 </head>
 <body>
@@ -21,39 +44,39 @@ table, th, td {
 		<th colspan="5">!Bingoem!</th>
 	</tr>
 	<tr>
-		<td id="00">&nbsp;</td>
-		<td id="01">&nbsp;</td>
-		<td id="02">&nbsp;</td>
-		<td id="03">&nbsp;</td>
-		<td id="04">&nbsp;</td>
+		<td id="1">&nbsp;</td>
+		<td id="2">&nbsp;</td>
+		<td id="3">&nbsp;</td>
+		<td id="4">&nbsp;</td>
+		<td id="5">&nbsp;</td>
 	</tr>
 	<tr>
+		<td id="6">&nbsp;</td>
+		<td id="7">&nbsp;</td>
+		<td id="8">&nbsp;</td>
+		<td id="9">&nbsp;</td>
 		<td id="10">&nbsp;</td>
+	</tr>
+	<tr>
 		<td id="11">&nbsp;</td>
 		<td id="12">&nbsp;</td>
-		<td id="13">&nbsp;</td>
+		<td id="13">Free</td>
 		<td id="14">&nbsp;</td>
+		<td id="15">&nbsp;</td>
 	</tr>
 	<tr>
+		<td id="16">&nbsp;</td>
+		<td id="17">&nbsp;</td>
+		<td id="18">&nbsp;</td>
+		<td id="19">&nbsp;</td>
 		<td id="20">&nbsp;</td>
+	</tr>
+	<tr>
 		<td id="21">&nbsp;</td>
-		<td id="free">Free</td>
+		<td id="22">&nbsp;</td>
 		<td id="23">&nbsp;</td>
 		<td id="24">&nbsp;</td>
-	</tr>
-	<tr>
-		<td id="30">&nbsp;</td>
-		<td id="31">&nbsp;</td>
-		<td id="32">&nbsp;</td>
-		<td id="33">&nbsp;</td>
-		<td id="34">&nbsp;</td>
-	</tr>
-	<tr>
-		<td id="40">&nbsp;</td>
-		<td id="41">&nbsp;</td>
-		<td id="42">&nbsp;</td>
-		<td id="43">&nbsp;</td>
-		<td id="44">&nbsp;</td>
+		<td id="25">&nbsp;</td>
 	</tr>
 </table>
   </div>
