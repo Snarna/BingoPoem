@@ -30,10 +30,10 @@ td:hover{background-color:#f5f5f5}
 <script>
 var numberPool = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
 function randomizeCard(){
-  $("#bingoCard").find('td').html(numberPool[Math.floor(Math.random() * numberPool.length)]);
+  $("#bingoCard").find('td').each(function(){
+    this.html(numberPool[Math.floor(Math.random() * numberPool.length)]);
+  });
 }
-
-
 </script>
 
 </head>
