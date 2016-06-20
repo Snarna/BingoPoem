@@ -28,13 +28,15 @@ td:hover{background-color:#f5f5f5}
 </style>
 
 <script>
-var numberPool = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+var numberPool = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
 function randomizeCard(){
-  var tempPool = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+  var tempPool = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
   $("#bingoCard").find('td').each(function(){
-    var index = Math.floor(Math.random() * tempPool.length);
-    $(this).html(tempPool[index]);
-    tempPool.splice(index, 1);
+    if($(this).attr('id') != "free"){
+      var index = Math.floor(Math.random() * tempPool.length);
+      $(this).html(tempPool[index]);
+      tempPool.splice(index, 1);
+    }
   });
 }
 </script>
@@ -63,7 +65,7 @@ function randomizeCard(){
 	<tr>
 		<td id="11">&nbsp;</td>
 		<td id="12">&nbsp;</td>
-		<td id="13">Free</td>
+		<td id="free">Free</td>
 		<td id="14">&nbsp;</td>
 		<td id="15">&nbsp;</td>
 	</tr>
