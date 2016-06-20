@@ -17,15 +17,16 @@ table, td, th{
 }
 table {
     border-collapse: collapse;
-    width: 100%;
+    width: 300px;
 }
 td {
-  width: 20%;
+  width: 100px;
   position: relative;
 }
 td:after {
+  content: '';
   display: block;
-  margin-top: 100%;
+  margin-top: 100px;
 }
 td:hover{background-color:#f5f5f5}
 </style>
