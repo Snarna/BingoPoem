@@ -24,7 +24,6 @@ td {
   position: relative;
 }
 td:after {
-  content: '';
   display: block;
   margin-top: 100%;
 }
