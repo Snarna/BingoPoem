@@ -33,7 +33,7 @@ function randomizeCard(){
   var tempPool = numberPool;
   $("#bingoCard").find('td').each(function(){
     var index = Math.floor(Math.random() * tempPool.length);
-    $(this).html(tempPool[intex]);
+    $(this).html(tempPool[index]);
     tempPool.splice(index, 1);
   });
 }
