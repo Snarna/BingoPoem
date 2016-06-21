@@ -46,7 +46,7 @@ function randomizeCard(){
       var numIndex = Math.floor(Math.random() * tempNumPool.length);
       var wordIndex = Math.floor(Math.random() * tempWordPool.length);
 
-      $(this).html(tempNumPool[numIndex] + " Hidden:" + tempWordPool[wordIndex]);
+      $(this).html("<span style=\"display:block\">"+tempNumPool[numIndex]+"</span>" + "<span style=\"display:none\">"+tempWordPool[wordIndex]+"</span>");
 
       tempNumPool.splice(numIndex, 1);
       tempWordPool.splice(wordIndex, 1);
