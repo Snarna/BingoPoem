@@ -53,6 +53,12 @@ function randomizeCard(){
     }
   });
 }
+
+$(document).ready(function(){
+  startButton.click(function(){
+    randomizeCard();
+  });
+});
 </script>
 
 </head>
@@ -61,6 +67,12 @@ function randomizeCard(){
     <h1>Title Should Go Here</h1>
   </div>
   <div class="row">
+    <div class="large-4 columns">
+      <div>
+        <h4>Control Section</h4>
+        <button id="startButton">Start</button>
+       </div>
+    </div>
     <div class="large-8 columns">
       <table id="bingoCard">
   	<tr>
@@ -102,11 +114,6 @@ function randomizeCard(){
   		<td id="25">&nbsp;</td>
   	</tr>
     </table>
-    </div>
-    <div class="large-4 columns">
-      <div>
-        <h4>This place is a place holder</h4>
-      </div>
     </div>
   </div>
 
