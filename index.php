@@ -98,9 +98,12 @@ function randomizeCard(){
   		<td id="24">&nbsp;</td>
   		<td id="25">&nbsp;</td>
   	</tr>
-  </table>
+    </table>
     </div>
     <div class="large-4 columns">
+      <div>
+        <h4>This place is a place holder</h4>
+      </div>
     </div>
   </div>
 
