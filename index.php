@@ -49,7 +49,7 @@ function randomizeCard(){
       tempNumPool.splice(numIndex, 1);
       tempWordPool.splice(wordIndex, 1);
 
-      $(this).html(tempNumPool[numIndex] + "Hidden:" + tempWordPool[wordiIndex]);
+      $(this).html(tempNumPool[numIndex] + "Hidden:" + tempWordPool[wordIndex]);
     }
   });
 }
