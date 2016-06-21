@@ -32,9 +32,9 @@ td:hover{background-color:#f5f5f5}
 </style>
 
 <script>
-//Globale Number Pool
+//Globale Variables
 var numberPool = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
-var wordPool = ['a','ab','abc','ad','ae','af','ag','ah','ai','aj','af','ad','aas','ads','af','ac','ae','aq','ab','aq','ad','as','aopop','ah',]
+var wordPool = ['a','ab','abc','ad','ae','af','ag','ah','ai','aj','af','ad','aas','ads','af','ac','ae','aq','ab','aq','ad','as','aopop','ah',];
 
 //Randomize Bingo Card
 function randomizeCard(){
@@ -46,7 +46,7 @@ function randomizeCard(){
       var numIndex = Math.floor(Math.random() * tempNumPool.length);
       var wordIndex = Math.floor(Math.random() * tempWordPool.length);
 
-      $(this).html(tempNumPool[numIndex] + "Hidden:" + tempWordPool[wordIndex]);
+      $(this).html(tempNumPool[numIndex] + " Hidden:" + tempWordPool[wordIndex]);
 
       tempNumPool.splice(numIndex, 1);
       tempWordPool.splice(wordIndex, 1);
