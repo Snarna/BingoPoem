@@ -58,6 +58,9 @@ function randomizeCard(){
 </head>
 <body>
   <div class="row">
+    <h1>Title Should Go Here</h1>
+  </div>
+  <div class="row">
     <div class="large-8 columns">
       <table id="bingoCard">
   	<tr>
