@@ -40,14 +40,14 @@ var wordPool = ['a','ab','abc','ad','ae','af','ag','ah','ai','aj','af','ad','aas
 function randomizeCard(){
   var tempNumPool = numberPool.slice(0);
   var tempWordPool = wordPool.slice(0);
-  
+
   $("#bingoCard").find('td').each(function(){
     if($(this).attr('id') != "free"){
       var numIndex = Math.floor(Math.random() * tempNumPool.length);
       var wordIndex = Math.floor(Math.random() * tempWordPool.length);
 
+      tempNumPool.splice(numIndex, 1);
       tempWordPool.splice(wordIndex, 1);
-      tempPool.splice(numIndex, 1);
 
       $(this).html(tempNumPool[numIndex] + "Hidden:" + tempWordPool[wordiIndex]);
     }
