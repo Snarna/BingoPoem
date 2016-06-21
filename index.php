@@ -34,7 +34,7 @@ td:hover{background-color:#f5f5f5}
 <script>
 var numberPool = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
 function randomizeCard(){
-  var tempPool = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+  var tempPool = numberPool.slice(0);
   $("#bingoCard").find('td').each(function(){
     if($(this).attr('id') != "free"){
       var index = Math.floor(Math.random() * tempPool.length);
