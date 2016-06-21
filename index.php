@@ -17,7 +17,7 @@ table, td, th{
 }
 table {
     border-collapse: collapse;
-    width: 650px;
+    width: 100%;
 }
 td {
   width: 100px;
@@ -47,7 +47,7 @@ function randomizeCard(){
       var wordIndex = Math.floor(Math.random() * tempWordPool.length);
 
       $(this).html(tempNumPool[numIndex] + "Hidden:" + tempWordPool[wordIndex]);
-      
+
       tempNumPool.splice(numIndex, 1);
       tempWordPool.splice(wordIndex, 1);
     }
@@ -58,46 +58,50 @@ function randomizeCard(){
 </head>
 <body>
   <div class="row">
-    <table id="bingoCard">
-	<tr>
-		<th colspan="5">!Bingoem!</th>
-	</tr>
-	<tr>
-		<td id="1">&nbsp;</td>
-		<td id="2">&nbsp;</td>
-		<td id="3">&nbsp;</td>
-		<td id="4">&nbsp;</td>
-		<td id="5">&nbsp;</td>
-	</tr>
-	<tr>
-		<td id="6">&nbsp;</td>
-		<td id="7">&nbsp;</td>
-		<td id="8">&nbsp;</td>
-		<td id="9">&nbsp;</td>
-		<td id="10">&nbsp;</td>
-	</tr>
-	<tr>
-		<td id="11">&nbsp;</td>
-		<td id="12">&nbsp;</td>
-		<td id="free">Free</td>
-		<td id="14">&nbsp;</td>
-		<td id="15">&nbsp;</td>
-	</tr>
-	<tr>
-		<td id="16">&nbsp;</td>
-		<td id="17">&nbsp;</td>
-		<td id="18">&nbsp;</td>
-		<td id="19">&nbsp;</td>
-		<td id="20">&nbsp;</td>
-	</tr>
-	<tr>
-		<td id="21">&nbsp;</td>
-		<td id="22">&nbsp;</td>
-		<td id="23">&nbsp;</td>
-		<td id="24">&nbsp;</td>
-		<td id="25">&nbsp;</td>
-	</tr>
-</table>
+    <div class="large-8 columns">
+      <table id="bingoCard">
+  	<tr>
+  		<th colspan="5">!Bingoem!</th>
+  	</tr>
+  	<tr>
+  		<td id="1">&nbsp;</td>
+  		<td id="2">&nbsp;</td>
+  		<td id="3">&nbsp;</td>
+  		<td id="4">&nbsp;</td>
+  		<td id="5">&nbsp;</td>
+  	</tr>
+  	<tr>
+  		<td id="6">&nbsp;</td>
+  		<td id="7">&nbsp;</td>
+  		<td id="8">&nbsp;</td>
+  		<td id="9">&nbsp;</td>
+  		<td id="10">&nbsp;</td>
+  	</tr>
+  	<tr>
+  		<td id="11">&nbsp;</td>
+  		<td id="12">&nbsp;</td>
+  		<td id="free">Free</td>
+  		<td id="14">&nbsp;</td>
+  		<td id="15">&nbsp;</td>
+  	</tr>
+  	<tr>
+  		<td id="16">&nbsp;</td>
+  		<td id="17">&nbsp;</td>
+  		<td id="18">&nbsp;</td>
+  		<td id="19">&nbsp;</td>
+  		<td id="20">&nbsp;</td>
+  	</tr>
+  	<tr>
+  		<td id="21">&nbsp;</td>
+  		<td id="22">&nbsp;</td>
+  		<td id="23">&nbsp;</td>
+  		<td id="24">&nbsp;</td>
+  		<td id="25">&nbsp;</td>
+  	</tr>
+  </table>
+    </div>
+    <div class="large-4 columns">
+    </div>
   </div>
 
 </body>
