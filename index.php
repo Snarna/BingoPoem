@@ -32,14 +32,21 @@ td:hover{background-color:#f5f5f5}
 </style>
 
 <script>
-var numberPool = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+//Globale Number Pool
+var numberPool = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
+var wordPool = ['a','ab','abc','ad','ae','af','ag','ah','ai','aj','af','ad','aas','ads','af','ac','ae','aq','ab','aq','ad','as','aopop','ah',]
+
+//Randomize Bingo Card
 function randomizeCard(){
-  var tempPool = numberPool.slice(0);
+  var tempNumPool = numberPool.slice(0);
+  var tempWordPool = wordPool.slice(0);
   $("#bingoCard").find('td').each(function(){
     if($(this).attr('id') != "free"){
-      var index = Math.floor(Math.random() * tempPool.length);
-      $(this).html(tempPool[index]);
-      tempPool.splice(index, 1);
+      var numIndex = Math.floor(Math.random() * tempPool.length);
+      var wordIndex = Math.floor(Math.random() * tempWordPool.length);
+      tempWordPool.splice(wordIndex, 1);
+      tempPool.splice(numIndex, 1);
+      $(this).html(tempPool[numIndex] + "Hidden:" + tempWordPool[wordiIndex]);
     }
   });
 }
