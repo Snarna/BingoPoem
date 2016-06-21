@@ -55,7 +55,7 @@ function randomizeCard(){
 }
 
 $(document).ready(function(){
-  startButton.click(function(){
+  $("#startButton").click(function(){
     randomizeCard();
   });
 });
