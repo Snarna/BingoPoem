@@ -8,33 +8,33 @@
 <!-- Import CSS and JS -->
 <link rel="stylesheet" type="text/css" href="libs\css\foundation.css">
 <script src="libs\js\jquery-3.0.0.min.js"></script>
+<script src="libs\js\jquery-ui.min.js"></script>
+<script src="libs\js\TweenMax.min.js"></script>
+<script src="libs\js\jquery.gsap.min.js"></script>
 
 <!-- My Own CSS and JS -->
 <style>
-table, td, th{
-  border: 1px solid #ddd;
-  text-align: mid;
-}
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
+
 td {
+  border-radius: 25px;
   width: 100px;
+  height: 150px;
+  background-color: #e6e6e6;
+  text-align: center;
   position: relative;
 }
-td:after {
-  content: '';
-  display: block;
-  margin-top: 100px;
-}
-td:hover{background-color:#f5f5f5}
 </style>
 
 <script>
 //Globale Variables
 var numberPool = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
 var wordPool = ['a','ab','abc','ad','ae','af','ag','ah','ai','aj','af','ad','aas','ads','af','ac','ae','aq','ab','aq','ad','as','aopop','ah',];
+var targetNum = 0;
+var rounds = 0;
+
+//Sounds
+var correct = new Audio("sounds/correct.wav");
+var wrong = new Audio("sounds/wrong.wav");
 
 //Randomize Bingo Card
 function randomizeCard(){
@@ -54,10 +54,51 @@ function randomizeCard(){
   });
 }
 
+function randomNumberGen(max, min){
+  return Math.floor(Math.random() * (max-min+1)+1);
+}
+
 $(document).ready(function(){
+  //Game Start
   $("#startButton").click(function(){
+
+    //Disable Start Button
+    $("#startButton").prop('disabled', true);
+
+    //Randomize Every Thing
     randomizeCard();
+
+    //System Number
+    targetNum = randomNumberGen(24,1);
+
+    //Show Number In Div
+    $("#targetNumSpan").html(targetNum);
+
+    $(".bingonum").on("click",function(){
+      var numberEle = $(this).find(":nth-child(1)");
+      var wordEle = $(this).find(":nth-child(2)");
+      if(parseInt(numberEle.html()) == targetNum){
+        correct.play();
+        numberEle.css('display', 'none');
+        wordEle.css('display', 'block');
+        $(this).animate({
+          backgroundColor: "#99ff99"
+        }, 500);
+      }
+      else{
+        wrong.play();
+        console.log("anime on ");
+        $(this).animate({
+          backgroundColor: "#ff3333"
+        }, 100);
+        $(this).animate({
+          backgroundColor: "#e6e6e6"
+        }, 100);
+      }
+    });
   });
+
+
 });
 </script>
 
@@ -70,8 +111,12 @@ $(document).ready(function(){
     <div class="large-4 columns">
       <div>
         <h4>Control Section</h4>
-        <button id="startButton">Start</button>
-       </div>
+        <button class="button" id="startButton">Start</button>
+        <br>
+        <div id="targetNumDiv">
+          System Drawn Number: <span id="targetNumSpan">Not Start Yet</span>
+        </div>
+      </div>
     </div>
     <div class="large-8 columns">
       <table id="bingoCard">
@@ -79,39 +124,39 @@ $(document).ready(function(){
   		<th colspan="5">!Bingoem!</th>
   	</tr>
   	<tr>
-  		<td id="1">&nbsp;</td>
-  		<td id="2">&nbsp;</td>
-  		<td id="3">&nbsp;</td>
-  		<td id="4">&nbsp;</td>
-  		<td id="5">&nbsp;</td>
+  		<td id="1" class="bingonum">&nbsp;</td>
+  		<td id="2" class="bingonum">&nbsp;</td>
+  		<td id="3" class="bingonum">&nbsp;</td>
+  		<td id="4" class="bingonum">&nbsp;</td>
+  		<td id="5" class="bingonum">&nbsp;</td>
   	</tr>
   	<tr>
-  		<td id="6">&nbsp;</td>
-  		<td id="7">&nbsp;</td>
-  		<td id="8">&nbsp;</td>
-  		<td id="9">&nbsp;</td>
-  		<td id="10">&nbsp;</td>
+  		<td id="6" class="bingonum">&nbsp;</td>
+  		<td id="7" class="bingonum">&nbsp;</td>
+  		<td id="8" class="bingonum">&nbsp;</td>
+  		<td id="9" class="bingonum">&nbsp;</td>
+  		<td id="10" class="bingonum">&nbsp;</td>
   	</tr>
   	<tr>
-  		<td id="11">&nbsp;</td>
-  		<td id="12">&nbsp;</td>
+  		<td id="11" class="bingonum">&nbsp;</td>
+  		<td id="12" class="bingonum">&nbsp;</td>
   		<td id="free">Free</td>
-  		<td id="14">&nbsp;</td>
-  		<td id="15">&nbsp;</td>
+  		<td id="14" class="bingonum">&nbsp;</td>
+  		<td id="15" class="bingonum">&nbsp;</td>
   	</tr>
   	<tr>
-  		<td id="16">&nbsp;</td>
-  		<td id="17">&nbsp;</td>
-  		<td id="18">&nbsp;</td>
-  		<td id="19">&nbsp;</td>
-  		<td id="20">&nbsp;</td>
+  		<td id="16" class="bingonum">&nbsp;</td>
+  		<td id="17" class="bingonum">&nbsp;</td>
+  		<td id="18" class="bingonum">&nbsp;</td>
+  		<td id="19" class="bingonum">&nbsp;</td>
+  		<td id="20" class="bingonum">&nbsp;</td>
   	</tr>
   	<tr>
-  		<td id="21">&nbsp;</td>
-  		<td id="22">&nbsp;</td>
-  		<td id="23">&nbsp;</td>
-  		<td id="24">&nbsp;</td>
-  		<td id="25">&nbsp;</td>
+  		<td id="21" class="bingonum">&nbsp;</td>
+  		<td id="22" class="bingonum">&nbsp;</td>
+  		<td id="23" class="bingonum">&nbsp;</td>
+  		<td id="24" class="bingonum">&nbsp;</td>
+  		<td id="25" class="bingonum">&nbsp;</td>
   	</tr>
     </table>
     </div>
