@@ -240,9 +240,11 @@ function firstRound(){
 
 function newRound(){
   if(systemSignal == 1){
+    $("#startButton").prop('disabled', false);
     return;
   }
   if(rounds == roundsLimit+1){
+    $("#startButton").prop('disabled', false);
     mainGameEnd();
     return;
   }
@@ -274,8 +276,6 @@ function mainGameEnd(){
   alert("Sorry You Didn't Win! Try Again");
   //Unbind clickable tds
   $(".bingonum").off("click");
-  //Enable Start Button
-  $("#startButton").prop('disabled', false);
 }
 
 function mainGameWin(sArr){
@@ -297,12 +297,11 @@ function mainGameWin(sArr){
     three = "of";
     $("#free").animate({backgroundColor: "#ffff80"}, 100);
   }
+
   $("#poemtable").after("<tr>"+"<td>&nbsp;"+one+"&nbsp;</td>"+"<td>&nbsp;"+two+"&nbsp;</td>"+"<td>&nbsp;"+three+"&nbsp;</td>"+"<td>&nbsp;"+four+"&nbsp;</td>"+"<td>&nbsp;"+five+"&nbsp;</td>"+"</tr>");
 
   //Unbind clickable tds
   $(".bingonum").off("click");
-  //Enable Start Button
-  $("#startButton").prop('disabled', false);
 }
 
 function resetGame(){
