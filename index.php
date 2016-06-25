@@ -33,6 +33,7 @@ var targetNum = 0;
 var rounds = 0;
 var roundsLimit = 15;
 var systemSignal = 0;
+var setT;
 
 //Sounds
 var correct = new Audio("sounds/correct.wav");
@@ -163,20 +164,26 @@ function checkWinner(ctd,numberEle,wordEle){
   sArr = [];
 
   //Check Diagonals
-  var leftD = [1, 7, 19, 25];
-  var rightD = [5, 9, 17, 21];
+  var leftD = [1, 7, "undefined", 19, 25];
+  var rightD = [5, 9, "undefined", 17, 21];
 
   //Check Left Diagonal
   for(i=0; i < leftD.length; i++){
-    var wnumberEle = $("#"+leftD[i]).find(":nth-child(1)");
-    var wwordEle = $("#"+leftD[i]).find(":nth-child(2)");
-    if(wnumberEle.css('display') == 'none' && wwordEle.css('display') == 'block'){
-      sArr.push(leftD[i]);
+    var checkCellEle = $("#"+leftD[i]);
+    var wnumberEle = checkCellEle.find(":nth-child(1)");
+    var wwordEle = checkCellEle.find(":nth-child(2)");
+    if((wnumberEle.css('display') == 'none' && wwordEle.css('display') == 'block') || typeof checkCellEle.attr('id') == 'undefined'){
+      if(typeof checkCellEle.attr('id') == 'undefined'){
+        sArr.push("free");
+      }
+      else{
+        sArr.push(leftD[i]);
+      }
     }
   }
 
   //Clear If Left Diagonal No Bingo
-  if(sArr.length == 4){
+  if(sArr.length == 5){
     systemSignal = 1;
     mainGameWin(sArr);
     return;
@@ -185,15 +192,21 @@ function checkWinner(ctd,numberEle,wordEle){
 
   //Check Left Diagonal
   for(i=0; i < rightD.length; i++){
-    var wnumberEle = $("#"+rightD[i]).find(":nth-child(1)");
-    var wwordEle = $("#"+rightD[i]).find(":nth-child(2)");
-    if(wnumberEle.css('display') == 'none' && wwordEle.css('display') == 'block'){
-      sArr.push(rightD[i]);
+    var checkCellEle = $("#"+leftD[i]);
+    var wnumberEle = checkCellEle.find(":nth-child(1)");
+    var wwordEle = checkCellEle.find(":nth-child(2)");
+    if((wnumberEle.css('display') == 'none' && wwordEle.css('display') == 'block') || typeof checkCellEle.attr('id') == 'undefined'){
+      if(typeof checkCellEle.attr('id') == 'undefined'){
+        sArr.push("free");
+      }
+      else{
+        sArr.push(leftD[i]);
+      }
     }
   }
 
   //Clear If Left Diagonal No Bingo
-  if(sArr.length == 4){
+  if(sArr.length == 5){
     systemSignal = 1;
     mainGameWin(sArr);
     return;
@@ -240,15 +253,14 @@ function firstRound(){
 
 function newRound(){
   if(systemSignal == 1){
-    $("#startButton").prop('disabled', false);
     return;
   }
   if(rounds == roundsLimit+1){
-    $("#startButton").prop('disabled', false);
+
     mainGameEnd();
     return;
   }
-  setTimeout(function(){
+  setT = setTimeout(function(){
     var targetNumIndex = Math.floor(Math.random() * targetNumPool.length);
     targetNum = targetNumPool[targetNumIndex];
     targetNumPool.splice(targetNumIndex, 1);
@@ -260,6 +272,7 @@ function newRound(){
 }
 
 function mainGameStart(){
+  //Clear What's left
   resetGame();
   //Disable Start Button
   $("#startButton").prop('disabled', true);
@@ -274,8 +287,12 @@ function mainGameStart(){
 
 function mainGameEnd(){
   alert("Sorry You Didn't Win! Try Again");
+
   //Unbind clickable tds
   $(".bingonum").off("click");
+
+  //Enable Start Button
+  $("#startButton").prop('disabled', false);
 }
 
 function mainGameWin(sArr){
@@ -294,6 +311,7 @@ function mainGameWin(sArr){
 
   //Free Slot
   if(typeof three == 'undefined'){
+    console.log("inside undefined");
     three = "of";
     $("#free").animate({backgroundColor: "#ffff80"}, 100);
   }
@@ -302,6 +320,12 @@ function mainGameWin(sArr){
 
   //Unbind clickable tds
   $(".bingonum").off("click");
+
+  //Stop SetTimeout Loop
+  clearTimeout(setT);
+
+  //Enable Start Button
+  $("#startButton").prop('disabled', false);
 }
 
 function resetGame(){
