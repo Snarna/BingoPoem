@@ -339,10 +339,10 @@ $(document).ready(function(){
         <button class="button expanded" id="startButton">Start</button>
         <br>
         <div id="targetNumDiv">
-          System Drawn Number: <span id="targetNumSpan">Not Start Yet</span>
+          Target Number: <span id="targetNumSpan">Not Start Yet</span>
         </div>
         <div id="roundNumDiv">
-          Round Number: <span id="roundNumSpan">0</span>
+          Rounds: <span id="roundNumSpan">0</span>
         </div>
         <br>
         <div>
