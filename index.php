@@ -292,10 +292,12 @@ function mainGameWin(sArr){
   var four = $("#"+sArr[3]).find(":nth-child(2)").html();
   var five = $("#"+sArr[4]).find(":nth-child(2)").html();
 
+  //Free Slot
   if(typeof three == 'undefined'){
     three = "of";
+    $("#free").animate({backgroundColor: "#ffff80"}, 100);
   }
-  $("#poemtable").after("<tr>"+"<td> "+one+" </td>"+"<td> "+two+" </td>"+"<td> "+three+" </td>"+"<td> "+four+" </td>"+"<td> "+five+" </td>"+"</tr>");
+  $("#poemtable").after("<tr>"+"<td>&nbsp;"+one+"&nbsp;</td>"+"<td>&nbsp;"+two+"&nbsp;</td>"+"<td>&nbsp;"+three+"&nbsp;</td>"+"<td>&nbsp;"+four+"&nbsp;</td>"+"<td>&nbsp;"+five+"&nbsp;</td>"+"</tr>");
 
   //Unbind clickable tds
   $(".bingonum").off("click");
