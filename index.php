@@ -31,7 +31,7 @@ var numberPool = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18,
 var wordPool = ['a','ab','abc','ad','ae','af','ag','ah','ai','aj','af','ad','aas','ads','af','ac','ae','aq','ab','aq','ad','as','aopop','ah',];
 var targetNum = 0;
 var rounds = 0;
-var roundsLimit = 15;
+var roundsLimit = 20;
 var systemSignal = 0;
 var setT;
 
@@ -256,7 +256,6 @@ function newRound(){
     return;
   }
   if(rounds == roundsLimit+1){
-
     mainGameEnd();
     return;
   }
@@ -291,12 +290,16 @@ function mainGameEnd(){
   //Unbind clickable tds
   $(".bingonum").off("click");
 
+  //Stop SetTimeout Loop
+  clearTimeout(setT);
+
   //Enable Start Button
   $("#startButton").prop('disabled', false);
 }
 
 function mainGameWin(sArr){
   alert("Congratulations! You Got A Bingo!");
+  console.log(sArr);
   $("#"+sArr[0]).animate({backgroundColor: "#ffff80"}, 100);
   $("#"+sArr[1]).animate({backgroundColor: "#ffff80"}, 100);
   $("#"+sArr[2]).animate({backgroundColor: "#ffff80"}, 100);
@@ -310,9 +313,28 @@ function mainGameWin(sArr){
   var five = $("#"+sArr[4]).find(":nth-child(2)").html();
 
   //Free Slot
+  if(typeof one == 'undefined'){
+    one = "of";
+    $("#free").animate({backgroundColor: "#ffff80"}, 100);
+  }
+  //Free Slot
+  if(typeof two == 'undefined'){
+    two = "of";
+    $("#free").animate({backgroundColor: "#ffff80"}, 100);
+  }
+  //Free Slot
   if(typeof three == 'undefined'){
-    console.log("inside undefined");
     three = "of";
+    $("#free").animate({backgroundColor: "#ffff80"}, 100);
+  }
+  //Free Slot
+  if(typeof four == 'undefined'){
+    four = "of";
+    $("#free").animate({backgroundColor: "#ffff80"}, 100);
+  }
+  //Free Slot
+  if(typeof five == 'undefined'){
+    five = "of";
     $("#free").animate({backgroundColor: "#ffff80"}, 100);
   }
 
