@@ -6,21 +6,74 @@
   <title>HSS Final Project</title>
 
 <!-- Import CSS and JS -->
-<link rel="stylesheet" type="text/css" href="libs\css\foundation.css">
-<script src="libs\js\jquery-3.0.0.min.js"></script>
-<script src="libs\js\jquery-ui.min.js"></script>
-<script src="libs\js\TweenMax.min.js"></script>
-<script src="libs\js\jquery.gsap.min.js"></script>
+<link rel="stylesheet" type="text/css" href="libs/css/foundation.css">
+<link rel="stylesheet" type="text/css" href="libs/css/motion-ui.min.css">
+<script src="libs/js/jquery-3.0.0.min.js"></script>
+<script src="libs/js/jquery-ui.min.js"></script>
+<script src="libs/js/TweenMax.min.js"></script>
+<script src="libs/js/jquery.gsap.min.js"></script>
 
 <!-- My Own CSS and JS -->
 <style>
+body{
+  background-position: left top;
+background-image: url("libs/pics/summer.jpg");
+background-repeat: no-repeat;
+}
 #bingoCard td {
   border-radius: 25px;
   width: 100px;
   height: 150px;
   background-color: #e6e6e6;
+
   text-align: center;
   position: relative;
+  font: normal 25px/1 Arial Black, Gadget, sans-serif;
+  color: black;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+
+#targetNumDiv {
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+  padding: 20px;
+  width: 250px;
+  height: 250px;
+  text-align: center;
+  position: relative;
+  font: normal 25px/1 Arial Black, Gadget, sans-serif;
+  color: black;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+#targetNumSpan {
+  font: normal 150px/1 Arial Black, Gadget, sans-serif;
+}
+#roundNumDiv {
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+  padding: 20px;
+  width: 250px;
+  height: 70px;
+  text-align: center;
+  position: relative;
+  font: normal 25px/1 Arial Black, Gadget, sans-serif;
+  color: black;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+}
+#countDownDiv {
+  border-radius: 25px;
+  border: 2px solid #73AD21;
+  padding: 20px;
+  width: 250px;
+  height: 70px;
+  text-align: center;
+  position: relative;
+  font: normal 25px/1 Arial Black, Gadget, sans-serif;
+  color: black;
+  -o-text-overflow: ellipsis;
 }
 </style>
 
@@ -32,8 +85,8 @@ var wordPool = ['a','ab','abc','ad','ae','af','ag','ah','ai','aj','af','ad','aas
 var targetNum = 0;
 var rounds = 0;
 var roundsLimit = 20;
-var systemSignal = 0;
 var setT;
+var countDT;
 
 //Sounds
 var correct = new Audio("sounds/correct.wav");
@@ -49,7 +102,7 @@ function randomizeCard(){
       var numIndex = Math.floor(Math.random() * tempNumPool.length);
       var wordIndex = Math.floor(Math.random() * tempWordPool.length);
 
-      $(this).html("<span style=\"display:block\">"+tempNumPool[numIndex]+"</span>" + "<span style=\"display:none\">"+tempWordPool[wordIndex]+"</span>");
+      $(this).html("<span style=\"display:block\" id=\"numberSpan\">"+tempNumPool[numIndex]+"</span>" + "<span style=\"display:none\">"+tempWordPool[wordIndex]+"</span>");
 
       tempNumPool.splice(numIndex, 1);
       tempWordPool.splice(wordIndex, 1);
@@ -116,7 +169,6 @@ function checkWinner(ctd,numberEle,wordEle){
 
   //Clear If Up Down No Bingo
   if(sArr.length == 5){
-    systemSignal = 1;
     mainGameWin(sArr);
     return;
   }
@@ -157,15 +209,14 @@ function checkWinner(ctd,numberEle,wordEle){
 
   //Clear If Left Right No Bingo
   if(sArr.length == 5){
-    systemSignal = 1;
     mainGameWin(sArr);
     return;
   }
   sArr = [];
 
   //Check Diagonals
-  var leftD = [1, 7, "undefined", 19, 25];
-  var rightD = [5, 9, "undefined", 17, 21];
+  var leftD = [1, 7, "freeslot", 19, 25];
+  var rightD = [5, 9, "freeslot", 17, 21];
 
   //Check Left Diagonal
   for(i=0; i < leftD.length; i++){
@@ -184,15 +235,15 @@ function checkWinner(ctd,numberEle,wordEle){
 
   //Clear If Left Diagonal No Bingo
   if(sArr.length == 5){
-    systemSignal = 1;
     mainGameWin(sArr);
     return;
   }
+  console.log("left to right:" + sArr);
   sArr = [];
 
-  //Check Left Diagonal
+  //Check Right Diagonal
   for(i=0; i < rightD.length; i++){
-    var checkCellEle = $("#"+leftD[i]);
+    var checkCellEle = $("#"+rightD[i]);
     var wnumberEle = checkCellEle.find(":nth-child(1)");
     var wwordEle = checkCellEle.find(":nth-child(2)");
     if((wnumberEle.css('display') == 'none' && wwordEle.css('display') == 'block') || typeof checkCellEle.attr('id') == 'undefined'){
@@ -200,17 +251,17 @@ function checkWinner(ctd,numberEle,wordEle){
         sArr.push("free");
       }
       else{
-        sArr.push(leftD[i]);
+        sArr.push(rightD[i]);
       }
     }
   }
 
   //Clear If Left Diagonal No Bingo
   if(sArr.length == 5){
-    systemSignal = 1;
     mainGameWin(sArr);
     return;
   }
+  console.log("right to left:" + sArr);
   sArr = [];
 
 }
@@ -219,6 +270,7 @@ function assignClickable(){
   $(".bingonum").on("click",function(){
     var numberEle = $(this).find(":nth-child(1)");
     var wordEle = $(this).find(":nth-child(2)");
+    //parseInt(numberEle.html()) == targetNum
     if(parseInt(numberEle.html()) == targetNum){
       correct.play();
       numberEle.css('display', 'none');
@@ -241,6 +293,15 @@ function assignClickable(){
     }
   });
 }
+function countDown(){
+  $('#countDownDiv').css('display', 'block');
+  cTime = parseInt($('#countDownSpan').html());
+  $('#countDownSpan').html(cTime-1);
+  if(cTime == 0){
+    return;
+  }
+  countDT = setTimeout(countDown , 1000);
+}
 
 function firstRound(){
   var targetNumIndex = Math.floor(Math.random() * targetNumPool.length);
@@ -249,12 +310,11 @@ function firstRound(){
   $("#targetNumSpan").html(targetNum);
   rounds = rounds + 1;
   $("#roundNumSpan").html(rounds);
+  //Start Count Down
+  countDown();
 }
 
 function newRound(){
-  if(systemSignal == 1){
-    return;
-  }
   if(rounds == roundsLimit+1){
     mainGameEnd();
     return;
@@ -266,6 +326,9 @@ function newRound(){
     $("#targetNumSpan").html(targetNum);
     rounds = rounds + 1;
     $("#roundNumSpan").html(rounds);
+    $("#countDownSpan").html("9");
+    clearTimeout(countDT);
+    countDown();
     newRound();
   },8000);
 }
@@ -292,6 +355,7 @@ function mainGameEnd(){
 
   //Stop SetTimeout Loop
   clearTimeout(setT);
+  clearTimeout(countDT);
 
   //Enable Start Button
   $("#startButton").prop('disabled', false);
@@ -345,14 +409,15 @@ function mainGameWin(sArr){
 
   //Stop SetTimeout Loop
   clearTimeout(setT);
+  clearTimeout(countDT);
 
   //Enable Start Button
   $("#startButton").prop('disabled', false);
 }
 
 function resetGame(){
-  //Change System Signal
-  systemSignal = 0;
+  //Change Free Slot Color
+  $('#free').animate({backgroundColor: "#99ff99"}, 100);
   //Empty Card
   emptyCard();
   //Re Initialize Global Variables
@@ -362,6 +427,7 @@ function resetGame(){
   //Change html
   $("#targetNumSpan").html("Not Start Yet");
   $("#roundNumSpan").html("0");
+  $("#countDownSpan").html("9");
 }
 
 $(document).ready(function(){
@@ -374,24 +440,35 @@ $(document).ready(function(){
 
 </head>
 <body>
-  <div class="row">
-    <h1>Title Should Go Here</h1>
+  <div class="row" data-equalizer data-equalize-on="medium">
+    <div class="large-8 columns">
+      <h1>BINGOEM!</h1>
+    </div>
+    <div class="large-4 columns">
+      Instrunction
+    </div>
   </div>
-  <div class="row">
+  <div class="row" data-equalizer data-equalize-on="medium">
     <div class="large-4 columns">
       <div>
-        <h4>Control Section</h4>
-        <button class="button expanded" id="startButton">Start</button>
+        <button class="button expanded" id="startButton">Game Start</button>
+        <br>
+        <div id="roundNumDiv">
+          Round <span id="roundNumSpan">0</span>
+        </div>
         <br>
         <div id="targetNumDiv">
-          Target Number: <span id="targetNumSpan">Not Start Yet</span>
+          Find
+          <br>
+          <span id="targetNumSpan"></span>
         </div>
-        <div id="roundNumDiv">
-          Rounds: <span id="roundNumSpan">0</span>
+        <br>
+        <div id="countDownDiv" style="display:none">
+          Next in: <span id="countDownSpan" >9</span> sec
         </div>
         <br>
         <div>
-          your poem:
+          <span id="poemTitleSpan">Poem<span>
           <table id="poemtable">
           </table>
         </div>
@@ -400,7 +477,7 @@ $(document).ready(function(){
     <div class="large-8 columns">
     <table id="bingoCard">
   	<tr>
-  		<th colspan="5">!Bingoem!</th>
+  		<th colspan="5">Bingo Card</th>
   	</tr>
   	<tr>
   		<td id="1" class="bingonum">&nbsp;</td>
