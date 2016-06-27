@@ -6,19 +6,19 @@
   <title>HSS Final Project</title>
 
 <!-- Import CSS and JS -->
+<link rel="stylesheet" type="text/css" href="libs/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="libs/css/foundation.css">
-<link rel="stylesheet" type="text/css" href="libs/css/motion-ui.min.css">
-<script src="libs/js/jquery-3.0.0.min.js"></script>
+<script src="libs/js/jquery-2.2.4.min.js"></script>
 <script src="libs/js/jquery-ui.min.js"></script>
-<script src="libs/js/TweenMax.min.js"></script>
-<script src="libs/js/jquery.gsap.min.js"></script>
+<script src="libs/js/bootstrap.min.js"></script>
 
 <!-- My Own CSS and JS -->
 <style>
 body{
-  background-position: left top;
-background-image: url("libs/pics/summer.jpg");
-background-repeat: no-repeat;
+  background-image: url("libs/pics/summer.jpg");
+  background-size:     cover;
+  background-repeat:   no-repeat;
+  background-position: center center;
 }
 #bingoCard td {
   border-radius: 25px;
@@ -81,7 +81,7 @@ background-repeat: no-repeat;
 //Globale Variables
 var targetNumPool = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
 var numberPool = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
-var wordPool = ['a','ab','abc','ad','ae','af','ag','ah','ai','aj','af','ad','aas','ads','af','ac','ae','aq','ab','aq','ad','as','aopop','ah',];
+var wordPool = ['game','hot','fun','fruit','water','jump','run','swim','easy','beach','cheer','cool','fresh ','sea','ripe','rest','hit','happy','play','sun','feast','revel','roast','heat'];
 var targetNum = 0;
 var rounds = 0;
 var roundsLimit = 20;
@@ -92,6 +92,10 @@ var countDT;
 var correct = new Audio("sounds/correct.wav");
 var wrong = new Audio("sounds/wrong.wav");
 
+//Instruction Popup
+function callIns(){
+  $('#insModal').modal('show');
+}
 //Randomize Bingo Card
 function randomizeCard(){
   var tempNumPool = numberPool.slice(0);
@@ -439,18 +443,16 @@ $(document).ready(function(){
 </script>
 
 </head>
-<body>
-  <div class="row" data-equalizer data-equalize-on="medium">
-    <div class="large-8 columns">
+<body onload="callIns()">
+  <div class="row" data-equalizer data-equalize-on="center">
+    <div class="large-12 columns">
       <h1>BINGOEM!</h1>
-    </div>
-    <div class="large-4 columns">
-      Instrunction
     </div>
   </div>
   <div class="row" data-equalizer data-equalize-on="medium">
     <div class="large-4 columns">
       <div>
+        <button class="button expanded" id="insButton" onclick="callIns()">Instruction</button>
         <button class="button expanded" id="startButton">Game Start</button>
         <br>
         <div id="roundNumDiv">
@@ -517,6 +519,28 @@ $(document).ready(function(){
     </table>
     </div>
   </div>
-
+  <div id="insModal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Instruction</h4>
+        </div>
+        <div class="modal-body">
+          <p>How to play:</p>
+            <ol>
+              <li>Click &quot;Game Start&quot; button to start game</li>
+              <li>Then take a look at &quot;FIND&quot; section on the left, you need to find that number in the bingo card and click that slot. But be careful, you need to find that number within 8 sec, otherwise it will disappear forever (Nooo!)</li>
+              <li>In order to win, you need to have 5 words in a line, either vertically,&nbsp;horizontally, or&nbsp;diagonally.</li>
+              <li>That &quot;Free&ldquo; slot is a give away.</li>
+              <li>&nbsp;If you failed to have 5 words in a line within 20 rounds, you lose this round. But dont worry, you can always start it again. :)</li>
+            </ol>
+          <p>There, that&#39;s all the rules .</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Let's Go</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 </body>
 </html>
